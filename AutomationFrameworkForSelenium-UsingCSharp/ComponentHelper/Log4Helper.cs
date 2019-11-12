@@ -18,6 +18,7 @@ namespace AutomationFrameworkForSelenium_UsingCSharp.ComponentHelper
         #region Field
 
         private static ILog _logger;
+        private static ILog _xmlLogger;
         private static ConsoleAppender consoleAppender;
         private static FileAppender _fileAppender;
         private static RollingFileAppender _rollingFileAppender;
@@ -105,12 +106,21 @@ namespace AutomationFrameworkForSelenium_UsingCSharp.ComponentHelper
 
             if (_logger != null)
                 return _logger;
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
             BasicConfigurator.Configure(consoleAppender, _fileAppender, _rollingFileAppender);
             _logger = LogManager.GetLogger(type);
             return _logger;
 
         }
+        public static ILog GetXmlLogger(Type type)
+        {
+            if (_xmlLogger != null)
+                return _xmlLogger;
+
+            XmlConfigurator.Configure();
+            _xmlLogger = LogManager.GetLogger(type);
+            return _xmlLogger;
+        }
+
 
         #endregion
     }

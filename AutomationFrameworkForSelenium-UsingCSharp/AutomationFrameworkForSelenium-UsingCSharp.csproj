@@ -128,6 +128,7 @@
     <Compile Include="ComponentHelper\Log4Helper.cs" />
     <Compile Include="ComponentHelper\NavigationHelper.cs" />
     <Compile Include="ComponentHelper\RadioButtonHelper.cs" />
+    <Compile Include="ComponentHelper\ReportHelper.cs" />
     <Compile Include="ComponentHelper\TextBoxHelper.cs" />
     <Compile Include="Configuration\AppConfigReader.cs" />
     <Compile Include="Configuration\BrowserType.cs" />
@@ -136,7 +137,6 @@
     <Compile Include="Settings\AppConfigKeys.cs" />
     <Compile Include="Settings\ObjectRepository.cs" />
     <Compile Include="Tests\TestLog4.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

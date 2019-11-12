@@ -7,6 +7,8 @@ using AutomationFrameworkForSelenium_UsingCSharp.ComponentHelper;
 using AutomationFrameworkForSelenium_UsingCSharp.Configuration;
 using AutomationFrameworkForSelenium_UsingCSharp.CustomEception;
 using AutomationFrameworkForSelenium_UsingCSharp.Settings;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -17,7 +19,7 @@ namespace AutomationFrameworkForSelenium_UsingCSharp.BaseClasses
 {
     public class BaseClass
     {
-
+       
         private static ChromeOptions GetChromeOptions()
         {
             ChromeOptions options = new ChromeOptions();
@@ -41,7 +43,8 @@ namespace AutomationFrameworkForSelenium_UsingCSharp.BaseClasses
         }
 
 
-        // [AssemblyInitialize]
+        [AssemblyInitialize]
+        
         public static void InitWebDriver(TestContext tc)
         {
             ObjectRepository.Config = new AppConfigReader();
@@ -66,9 +69,10 @@ namespace AutomationFrameworkForSelenium_UsingCSharp.BaseClasses
                 .PageLoad = TimeSpan.FromSeconds(ObjectRepository.Config.GetPageLoadOutTime());
             ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut());
             BrowserHelper.MaximizeBrowser();
+
         }
 
-        // [AssemblyCleanup]
+       // [AssemblyCleanup]
         public static void TearDown()
         {
             if (ObjectRepository.Driver != null)
