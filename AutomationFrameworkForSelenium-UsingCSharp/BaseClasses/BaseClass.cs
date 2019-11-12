@@ -17,6 +17,7 @@ using OpenQA.Selenium.IE;
 
 namespace AutomationFrameworkForSelenium_UsingCSharp.BaseClasses
 {
+    [TestClass]
     public class BaseClass
     {
        
@@ -26,19 +27,19 @@ namespace AutomationFrameworkForSelenium_UsingCSharp.BaseClasses
             options.AddArgument("start-maximized");
             return options;
         }
-        private static IWebDriver GetFireFoxDriver()
+        private static FirefoxDriver GetFireFoxDriver()
         {
-            IWebDriver driver = new FirefoxDriver();
+            FirefoxDriver driver = new FirefoxDriver();
             return driver;
         }
-        private static IWebDriver GetChromeDriver()
+        private static ChromeDriver GetChromeDriver()
         {
-            IWebDriver driver = new ChromeDriver(GetChromeOptions());
+            ChromeDriver driver = new ChromeDriver(GetChromeOptions());
             return driver;
         }
-        private static IWebDriver GetIExplorerDriver()
+        private static InternetExplorerDriver GetIExplorerDriver()
         {
-            IWebDriver driver = new InternetExplorerDriver();
+            InternetExplorerDriver driver = new InternetExplorerDriver();
             return driver;
         }
 
@@ -47,9 +48,9 @@ namespace AutomationFrameworkForSelenium_UsingCSharp.BaseClasses
         
         public static void InitWebDriver(TestContext tc)
         {
-            ObjectRepository.Config = new AppConfigReader();
+            ObjectRepository.configreader = new AppConfigReader();
 
-            switch (ObjectRepository.Config.GetBrowserType())
+            switch (ObjectRepository.configreader.GetBrowserType())
             {
                 case BrowserType.Chrome:
                     ObjectRepository.Driver = GetChromeDriver();
@@ -61,18 +62,18 @@ namespace AutomationFrameworkForSelenium_UsingCSharp.BaseClasses
                     ObjectRepository.Driver = GetIExplorerDriver();
                     break;
                 default:
-                    throw new NoSuchDriverFound("Driver Not Found: " + ObjectRepository.Config.GetBrowserType().ToString());
+                    throw new NoSuchDriverFound("Driver Not Found: " + ObjectRepository.configreader.GetBrowserType().ToString());
 
             }
 
             ObjectRepository.Driver.Manage().Timeouts()
-                .PageLoad = TimeSpan.FromSeconds(ObjectRepository.Config.GetPageLoadOutTime());
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut());
+                .PageLoad = TimeSpan.FromSeconds(ObjectRepository.configreader.GetPageLoadOutTime());
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.configreader.GetElementLoadTimeOut());
             BrowserHelper.MaximizeBrowser();
 
         }
 
-       // [AssemblyCleanup]
+       [AssemblyCleanup]
         public static void TearDown()
         {
             if (ObjectRepository.Driver != null)

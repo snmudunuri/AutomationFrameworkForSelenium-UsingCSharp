@@ -41,8 +41,8 @@ namespace AutomationFrameworkForSelenium_UsingCSharp.ComponentHelper
             Screenshot screen = ObjectRepository.Driver.TakeScreenshot();
             if (filename.Equals("ScreenShot"))
             {
-                string name = filename + DateTime.UtcNow.ToString("f") + ".jpeg";
-                screen.SaveAsFile(name, ScreenshotImageFormat.Jpeg);
+                filename = filename + DateTime.UtcNow.ToString("yyyy-MM-dd-mm-ss") + ".jpeg";
+                screen.SaveAsFile(filename, ScreenshotImageFormat.Jpeg);
                 return;
             }
             screen.SaveAsFile(filename, ScreenshotImageFormat.Jpeg);

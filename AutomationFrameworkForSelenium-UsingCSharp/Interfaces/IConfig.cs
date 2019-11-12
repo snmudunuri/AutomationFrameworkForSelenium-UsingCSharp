@@ -10,7 +10,7 @@ namespace AutomationFrameworkForSelenium_UsingCSharp.Interfaces
     public interface IConfig
     {
         BrowserType GetBrowserType();
-        String GetWebsite();
+        string GetWebsite();
         int GetPageLoadOutTime();
         int GetElementLoadTimeOut();
 

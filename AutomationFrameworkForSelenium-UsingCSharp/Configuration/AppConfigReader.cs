@@ -19,7 +19,7 @@ namespace AutomationFrameworkForSelenium_UsingCSharp.Configuration
 
         public string GetWebsite()
         {
-            return ConfigurationManager.AppSettings.Get(AppConfigKeys.WebSite);
+            return ConfigurationManager.AppSettings.Get(AppConfigKeys.Website);
         }
 
         public int GetPageLoadOutTime()
